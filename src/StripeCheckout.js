@@ -58,6 +58,9 @@ const StripeCheckoutWebView = (props: Props) => {
     options,
     webViewProps = {},
     renderOnComplete,
+    queryParamKey,
+    queryParamSuccessValue,
+    queryParamCancelValue
   } = props;
   /** Holds the complete URL if exists */
   const [completed, setCompleted] = useState(null);
@@ -73,7 +76,7 @@ const StripeCheckoutWebView = (props: Props) => {
     const { nativeEvent } = syntheticEvent;
     const { url: currentUrl } = nativeEvent;
     /** Check and handle checkout state: success */
-    if (currentUrl.includes('sc_checkout=success')) {
+    if (currentUrl.includes(`${queryParamKey}=${queryParamSuccessValue}`)) {
       const checkoutSessionIdKey = 'sc_sid=';
       const checkoutSessionId = currentUrl
         .substring(currentUrl.indexOf(checkoutSessionIdKey), currentUrl.length)
@@ -88,7 +91,7 @@ const StripeCheckoutWebView = (props: Props) => {
       return;
     }
     /** Check and handle checkout state: cancel */
-    if (currentUrl.includes('sc_checkout=cancel')) {
+    if (currentUrl.includes(`${queryParamKey}=${queryParamCancelValue}`)) {
       setCompleted(true);
       if (onCancel) {
         onCancel(props);

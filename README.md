@@ -97,3 +97,5 @@ Pull requests are highly appreciated! For major changes, please open an issue fi
 - Config prettier
 - Add typescript
 
+### UPDATE 2020
+- add props: queryParamKey, queryParamCancelValue, queryParamSuccessValue
