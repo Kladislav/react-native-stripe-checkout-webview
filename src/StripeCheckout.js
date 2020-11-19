@@ -60,7 +60,8 @@ const StripeCheckoutWebView = (props: Props) => {
     renderOnComplete,
     queryParamKey,
     queryParamSuccessValue,
-    queryParamCancelValue
+    queryParamCancelValue,
+    prodUrl
   } = props;
   /** Holds the complete URL if exists */
   const [completed, setCompleted] = useState(null);
@@ -141,6 +142,7 @@ const StripeCheckoutWebView = (props: Props) => {
           checkoutSessionInput,
           options,
         ),
+        baseUrl: prodUrl
       }}
       onLoadStart={_onLoadStart}
       onLoadEnd={_onLoadEnd}
